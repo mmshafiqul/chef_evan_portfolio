@@ -7,21 +7,21 @@ const testimonials = [
     content: "Chef Evan catered our wedding, and every dish was absolutely perfect. The guests are still talking about the food months later!",
     author: "Sarah & James Thompson",
     event: "Wedding Reception",
-    image: "/src/assets/testimonial1.jpg"
+    image: "/assets/testimonial1.jpg"
   },
   {
     id: 2,
     content: "The private dining experience was exceptional. Chef Evan's attention to detail and creativity made our anniversary dinner unforgettable.",
     author: "Michael Chen",
     event: "Anniversary Dinner",
-    image: "/src/assets/testimonial2.jpg"
+    image: "/assets/testimonial2.jpg"
   },
   {
     id: 3,
     content: "Our corporate event was elevated by Chef Evan's incredible menu. Professional, punctual, and the food was outstanding.",
     author: "Emily Rodriguez",
     event: "Corporate Event",
-    image: "/src/assets/testimonial3.jpg"
+    image: "/assets/testimonial3.jpg"
   }
 ];
 

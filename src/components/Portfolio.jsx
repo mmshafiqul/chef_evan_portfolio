@@ -6,7 +6,7 @@ const dishes = [
     id: 1,
     name: 'Grilled Scallops with Lemon Butter Sauce',
     category: 'Appetizers',
-    image: '/src/assets/dish1.jpg',
+    image: '/assets/dish1.jpg',
     ingredients: 'Scallops, garlic, lemon, butter, herbs',
     award: 'Featured in Food & Wine Magazine'
   },
@@ -14,7 +14,7 @@ const dishes = [
     id: 2,
     name: 'Roasted Lamb with Herb Crust',
     category: 'Main Courses',
-    image: '/src/assets/dish2.jpg',
+    image: '/assets/dish2.jpg',
     ingredients: 'Grass-fed lamb, rosemary, garlic, thyme, Dijon mustard',
     award: 'Best Dish Award 2024'
   },
@@ -22,7 +22,31 @@ const dishes = [
     id: 3,
     name: 'Dark Chocolate Soufflé',
     category: 'Desserts',
-    image: '/src/assets/dish3.jpg',
+    image: '/assets/dish3.jpg',
+    ingredients: 'Dark chocolate, eggs, butter, vanilla bean',
+    award: 'Pastry Excellence Award'
+  },
+  {
+    id: 4,
+    name: 'Grilled Scallops with Lemon Butter Sauce',
+    category: 'Appetizers',
+    image: '/assets/dish1.jpg',
+    ingredients: 'Scallops, garlic, lemon, butter, herbs',
+    award: 'Featured in Food & Wine Magazine'
+  },
+  {
+    id: 5,
+    name: 'Roasted Lamb with Herb Crust',
+    category: 'Main Courses',
+    image: '/assets/dish2.jpg',
+    ingredients: 'Grass-fed lamb, rosemary, garlic, thyme, Dijon mustard',
+    award: 'Best Dish Award 2024'
+  },
+  {
+    id: 6,
+    name: 'Dark Chocolate Soufflé',
+    category: 'Desserts',
+    image: '/assets/dish3.jpg',
     ingredients: 'Dark chocolate, eggs, butter, vanilla bean',
     award: 'Pastry Excellence Award'
   }
