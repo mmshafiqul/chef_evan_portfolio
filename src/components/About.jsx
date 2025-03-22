@@ -16,7 +16,7 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center md:order-1"
+            className="flex justify-center order-1 md:order-2"
           >
             <img
               src="assets/chef_evan.jpeg"
@@ -31,7 +31,7 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-6 md:order-2"
+            className="space-y-6 order-2 md:order-1"
           >
             <p className="text-lg text-amber-800 leading-relaxed">
               I'm Chef Evan, a passionate culinary artist with over 10 years of experience in fine dining
