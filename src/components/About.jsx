@@ -12,26 +12,26 @@ const About = () => {
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -50, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex justify-center"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex justify-center md:order-1"
           >
             <img
               src="assets/chef_evan.jpeg"
               alt="Chef Evan"
-              className="h-auto max-h-[500px] w-auto rounded-lg shadow-lg hover:shadow-amber-200/50 transition-all duration-300"
+              className="h-auto max-h-[500px] w-auto rounded-lg shadow-lg hover:shadow-amber-200/50 transition-all duration-300 hover:scale-105"
               style={{ height: 'max-content' }}
             />
           </motion.div>
           
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 50, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="space-y-6 md:order-2"
           >
             <p className="text-lg text-amber-800 leading-relaxed">
               I'm Chef Evan, a passionate culinary artist with over 10 years of experience in fine dining
@@ -47,21 +47,24 @@ const About = () => {
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 className="text-center p-4 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-amber-200/50 transition-all duration-300 border border-amber-100"
               >
                 <div className="text-3xl font-bold text-amber-700">10+</div>
                 <div className="text-sm text-amber-600">Years Experience</div>
               </motion.div>
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 className="text-center p-4 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-amber-200/50 transition-all duration-300 border border-amber-100"
               >
                 <div className="text-3xl font-bold text-amber-700">500+</div>
                 <div className="text-sm text-amber-600">Events Catered</div>
               </motion.div>
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 className="text-center p-4 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-amber-200/50 transition-all duration-300 border border-amber-100"
               >
                 <div className="text-3xl font-bold text-amber-700">50+</div>
