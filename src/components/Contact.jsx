@@ -239,7 +239,7 @@ const Contact = () => {
                     </div>
                     <textarea
                       name="message"
-                      rows={4}
+                      rows={10}
                       className={getInputClasses('message')}
                       placeholder="Tell me about your event..."
                       value={formData.message}

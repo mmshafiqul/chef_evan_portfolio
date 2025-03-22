@@ -19,9 +19,9 @@ const About = () => {
             className="flex justify-center"
           >
             <img
-              src="/assets/chef_evan_profile.jpg"
+              src="assets/chef_evan.jpeg"
               alt="Chef Evan"
-              className="h-auto max-h-[600px] w-auto rounded-lg shadow-lg hover:shadow-amber-200/50 transition-all duration-300"
+              className="h-auto max-h-[500px] w-auto rounded-lg shadow-lg hover:shadow-amber-200/50 transition-all duration-300"
               style={{ height: 'max-content' }}
             />
           </motion.div>

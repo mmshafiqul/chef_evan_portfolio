@@ -8,6 +8,7 @@ import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import Gallery from './components/Gallery'
 import { enableContentProtection } from './utils/contentProtection'
 import './App.css'
 
@@ -36,6 +37,7 @@ function App() {
         <div id="testimonials">
           <Testimonials />
         </div>
+        <Gallery />
         <div id="contact">
           <Contact />
         </div>
