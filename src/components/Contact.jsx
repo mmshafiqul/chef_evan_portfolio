@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
+import axios from 'axios';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const Contact = () => {
   });
 
   const [focusedField, setFocusedField] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,19 +21,57 @@ const Contact = () => {
       ...prevState,
       [name]: value
     }));
+    setLoading(false);
+    setError(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically handle the form submission
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      message: '',
-      subject: ''
-    });
+    try {
+      setLoading(true);
+
+      // Log the data being sent
+      console.log('Sending data:', formData);
+
+      // Make API call using axios
+      const response = await axios.post('http://chefevan.se/api/messages', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        withCredentials: false,
+        crossDomain: true,
+        mode: 'cors'
+      });
+
+      // Log the response
+      console.log('Response:', response.data);
+
+      // Reset form on successful submission
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+
+      // Show success message
+      alert('Message sent successfully!');
+    } catch (error) {
+      // Show error message
+      alert('Failed to send message. Please try again.');
+
+      // Log detailed error information
+      console.error('API Error:', {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+        config: error.config
+      });
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getInputClasses = (fieldName) => {
@@ -142,21 +183,22 @@ const Contact = () => {
 
           {/* Contact Form */}
           <AnimatedSection>
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 h-full border border-amber-100 hover:shadow-amber-100/50 transition-all duration-300">
-              <h3 className="text-2xl font-bold text-amber-900 mb-8">Send a Message</h3>
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-6 md:p-8 h-full border border-amber-100 hover:shadow-amber-100/50 transition-all duration-300">
+              <h3 className="text-2xl md:text-3xl font-bold text-amber-900 mb-6 md:mb-8">Send a Message</h3>
               <motion.form
                 onSubmit={handleSubmit}
-                className="space-y-6"
+                className="space-y-6 md:space-y-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                     <label htmlFor="name" className={labelClasses}>
-                      Full Name
+                      Your Name
                     </label>
-                    <div className="relative ">
+                    <div className="relative">
+                      <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-amber-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg></div>
                       <input
                         type="text"
                         name="name"
@@ -165,15 +207,10 @@ const Contact = () => {
                         onChange={handleChange}
                         onFocus={() => setFocusedField('name')}
                         onBlur={() => setFocusedField(null)}
+                        className={`${getInputClasses('name')} text-base md:text-lg`}
+                        placeholder="Enter your name"
                         required
-                        className={getInputClasses('name')}
-                        placeholder="John Doe"
                       />
-                      <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-amber-500">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      </div>
                     </div>
                   </motion.div>
 
@@ -190,12 +227,13 @@ const Contact = () => {
                       <input
                         type="email"
                         name="email"
-                        className={getInputClasses('email')}
-                        placeholder="john@example.com"
+                        id="email"
                         value={formData.email}
                         onChange={handleChange}
                         onFocus={() => setFocusedField('email')}
                         onBlur={() => setFocusedField(null)}
+                        className={`${getInputClasses('email')} text-base md:text-lg`}
+                        placeholder="Enter your email"
                         required
                       />
                     </div>
@@ -216,12 +254,12 @@ const Contact = () => {
                       type="text"
                       name="subject"
                       id="subject"
-                      className={getInputClasses('subject')}
-                      placeholder="What's this about?"
                       value={formData.subject}
                       onChange={handleChange}
                       onFocus={() => setFocusedField('subject')}
                       onBlur={() => setFocusedField(null)}
+                      className={`${getInputClasses('subject')} text-base md:text-lg`}
+                      placeholder="Enter subject"
                       required
                     />
                   </div>
@@ -232,32 +270,34 @@ const Contact = () => {
                     Your Message
                   </label>
                   <div className="relative">
-                    <div className="absolute top-3 left-3 flex items-start pointer-events-none text-amber-500">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                      </svg>
-                    </div>
+                    <div class="absolute top-4 left-3 flex items-start pointer-events-none text-amber-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg></div>
                     <textarea
                       name="message"
-                      rows={10}
-                      className={getInputClasses('message')}
-                      placeholder="Tell me about your event..."
+                      id="message"
                       value={formData.message}
                       onChange={handleChange}
                       onFocus={() => setFocusedField('message')}
                       onBlur={() => setFocusedField(null)}
+                      className={`${getInputClasses('message')} h-48 resize-none text-base md:text-lg`}
+                      placeholder="Enter your message"
                       required
+                      rows={10}
                     />
                   </div>
                 </motion.div>
+
+                {error && (
+                  <div className="text-red-500 text-sm mb-4">{error}</div>
+                )}
 
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-amber-200/50 transition-all duration-300"
+                  className="w-full px-6 py-3 md:py-4 bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-amber-200/50 transition-all duration-300 text-base md:text-lg"
+                  disabled={loading}
                 >
-                  Send Message
+                  {loading ? 'Sending...' : 'Send Message'}
                 </motion.button>
               </motion.form>
             </div>
